@@ -1,43 +1,36 @@
-js
-document.addEventListener("DOMContentLoaded", function () {
-  const scanBtn = document.getElementById("scanButton");
-  const resultBox = document.getElementById("resultBox");
+async function scanToken() {
+  const address = document.getElementById("tokenAddress").value.trim();
+  const resultDiv = document.getElementById("result");
+  resultDiv.innerHTML = "Scanning...";
 
-  scanBtn.addEventListener("click", async function () {
-    const address = document.getElementById("tokenInput").value.trim();
-    if (!address) {
-      resultBox.innerHTML = "⚠️ Please enter a token address.";
-      return;
-    }
+  if (!address) {
+    resultDiv.innerHTML = "Please enter a valid token address.";
+    return;
+  }
 
-    resultBox.innerHTML = "🔍 Scanning token...";
-
-    try {
-      const response = await fetch(`https://public-api.birdeye.so/public/token/${address}`, {
-        headers: {
-          "X-API-KEY": "ff6f3604fb644a89a984b41f9f1f3871"
-        }
-      });
-
-      const data = await response.json();
-
-      if (!data || !data.data) {
-        resultBox.innerHTML = "❌ No data found for that token.";
-        return;
+  try {
+    const response = await fetch(`https://public-api.birdeye.so/defi/token_metadata?address=${address}`, {
+      headers: {
+        "X-API-KEY": "ff6f3604fb644a89a984b41f9f1f3871"
       }
+    });
 
-      const token = data.data;
-
-      resultBox.innerHTML = `
-        ✅ <strong>Name:</strong> ${token.name || "Unknown"}<br>
-        💲 <strong>Price:</strong> $${token.price || "N/A"}<br>
-        🔢 <strong>Symbol:</strong> ${token.symbol || "N/A"}<br>
-        📦 <strong>Mint:</strong> ${address}<br>
-      `;
-    } catch (error) {
-      console.error(error);
-      resultBox.innerHTML = "🚫 Error fetching token data.";
+    if (!response.ok) {
+      throw new Error("API request failed");
     }
-  });
-});
-```
+
+    const data = await response.json();
+    const token = data.data;
+
+    resultDiv.innerHTML = `
+      <p><strong>Name:</strong> ${token.name || "Unknown"}</p>
+      <p><strong>Symbol:</strong> ${token.symbol || "Unknown"}</p>
+      <p><strong>Price:</strong> $${token.price?.toFixed(6) || "N/A"}</p>
+      <p><strong>Decimals:</strong> ${token.decimals || "N/A"}</p>
+      <p><strong>Address:</strong> ${address}</p>
+    `;
+  } catch (error) {
+    console.error(error);
+    resultDiv.innerHTML = "Failed to retrieve token data. Please check the token address.";
+  }
+}

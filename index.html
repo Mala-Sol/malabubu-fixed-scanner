@@ -3,24 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Malabubu Token Scanner</title>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 2rem; background: #0d1117; color: #fff; }
-    input, button { padding: 0.6rem 1rem; font-size: 1rem; margin: 0.5rem; border-radius: 6px; }
-    input { width: 300px; max-width: 90%; }
-    button { background: #00ff99; border: none; cursor: pointer; }
-    #results { margin-top: 2rem; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; background: #161b22; padding: 1rem; border-radius: 10px; }
-    a { color: #00ffcc; }
-  </style>
+  <title>🧪 Malabubu Solana Token Scanner</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>🧪 Malabubu Solana Token Scanner</h1>
-  <form>
-    <input type="text" id="tokenInput" placeholder="Enter Solana Token Address" required />
-    <button type="submit">Scan</button>
-  </form>
-  <div id="results"></div>
-
-  <script src="main.js" defer></script>
+  <div class="container">
+    <h1>🧪 Malabubu Solana Token Scanner</h1>
+    <input type="text" id="tokenAddress" placeholder="Enter Solana Token Address" />
+    <button onclick="scanToken()">Scan</button>
+    <div id="result"></div>
+  </div>
+  <script src="main.js"></script>
 </body>
 </html>

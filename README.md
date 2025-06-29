@@ -1,10 +1,17 @@
-# $MALA – Malabubu Scanner (Fixed Version)
+# $MALA – Malabubu Solana Token Scanner
 
-Deploy this static scanner app on Vercel in one click:
+The Malabubu Scanner helps you analyze Solana tokens using on-chain metadata and Birdeye's public API.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/project?template=Mala-Sol/malabubu-fixed-scanner)
+## Features
 
----
+- Get token name, symbol, price, decimals
+- Clean mobile-friendly UI
+- Free to use
 
-CA: 7eVBUfJJ2uGB17X5u4oGBPsigmRBjqvMgBonEaUrpump  
-Ticker: $MALA
+## How to Deploy
+
+1. Clone this repo or download the ZIP
+2. Deploy to [Vercel](https://vercel.com)
+3. Set your Birdseye API key under project settings as `X-API-KEY` or hardcode for testing
+
+## Built with 💚 by the Malabubu crew
