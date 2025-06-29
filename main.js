@@ -1,3 +1,4 @@
+
 async function scanToken() {
   const tokenAddress = document.getElementById("tokenInput").value.trim();
   const resultDiv = document.getElementById("results");
@@ -44,20 +45,20 @@ async function scanToken() {
     const supplyData = await supplyRes.json();
     const mintData = await mintInfoRes.json();
 
-    const supply = supplyData.result?.value?.uiAmount || "Unknown";
-    const mintInfo = mintData.result?.value?.data?.parsed?.info || {};
-    const mintAuthority = mintInfo.mintAuthority || "Unknown";
-    const decimals = mintInfo.decimals || "N/A";
+    const supply = supplyData.result?.value?.uiAmount ?? "Unknown";
+    const mintInfo = mintData.result?.value?.data?.parsed?.info ?? {};
+    const mintAuthority = mintInfo?.mintAuthority ?? "Unknown";
+    const decimals = mintInfo?.decimals ?? "N/A";
 
     const creator = tokenAddress.slice(0, 4) + "..." + tokenAddress.slice(-4);
 
     // Fetch token price + liquidity from Birdeye
     const birdeyeRes = await fetch(`https://public-api.birdeye.so/public/token/${tokenAddress}`, {
-      headers: { "x-api-key": "public" }  // replace with real key for higher limits
+      headers: { "x-api-key": "public" }
     });
 
     const birdeyeData = await birdeyeRes.json();
-    const tokenMeta = birdeyeData.data || {};
+    const tokenMeta = birdeyeData?.data || {};
     const tokenName = tokenMeta.name || "Unknown";
     const tokenSymbol = tokenMeta.symbol || "$???";
     const tokenPrice = tokenMeta.priceUsd ? `$${tokenMeta.priceUsd.toFixed(4)}` : "N/A";
@@ -72,8 +73,8 @@ async function scanToken() {
       <p><strong>Risk Score:</strong> <span style="color:orange;">72/100</span></p>
       <ul style='text-align:left; display:inline-block;'>
         <li>âœ… Price and metadata fetched</li>
-        <li>${mintAuthority === null ? 'âœ… Mint authority renounced' : 'âš ï¸ Mint authority still active'}</li>
-        <li>âœ… Public creator wallet link</li>
+        <li>${mintAuthority === null || mintAuthority === "Unknown" ? 'âœ… Mint authority renounced' : 'âš ï¸ Mint authority still active'}</li>
+        <li>ðŸ”— Public creator wallet link</li>
       </ul>
     `;
   } catch (e) {
