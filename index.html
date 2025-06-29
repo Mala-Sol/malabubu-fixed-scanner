@@ -2,20 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>$MALA | Malabubu Scanner</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Malabubu Token Scanner</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 2rem; background: #0d1117; color: #fff; }
+    input, button { padding: 0.6rem 1rem; font-size: 1rem; margin: 0.5rem; border-radius: 6px; }
+    input { width: 300px; max-width: 90%; }
+    button { background: #00ff99; border: none; cursor: pointer; }
+    #results { margin-top: 2rem; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; background: #161b22; padding: 1rem; border-radius: 10px; }
+    a { color: #00ffcc; }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>$MALA – Malabubu Scanner</h1>
-    <p>The tool that hunts down rug devs on Solana.</p>
-    <input type="text" id="tokenInput" placeholder="Paste Solana Token Address..." />
-    <button onclick="scanToken()">Scan Token</button>
-    <div id="results"></div>
-    <a href="https://raydium.io/swap/?inputCurrency=sol&outputCurrency=7eVBUfJJ2uGB17X5u4oGBPsigmRBjqvMgBonEaUrpump" target="_blank">Buy $MALA on Raydium</a>
-  </div>
+  <h1>🧪 Malabubu Solana Token Scanner</h1>
+  <form>
+    <input type="text" id="tokenInput" placeholder="Enter Solana Token Address" required />
+    <button type="submit">Scan</button>
+  </form>
+  <div id="results"></div>
 
-  <script src="main.js"></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
