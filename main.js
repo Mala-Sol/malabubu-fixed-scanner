@@ -1,3 +1,4 @@
+js
 document.addEventListener("DOMContentLoaded", function () {
   const scanBtn = document.getElementById("scanButton");
   const resultBox = document.getElementById("resultBox");
@@ -39,3 +40,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+```
